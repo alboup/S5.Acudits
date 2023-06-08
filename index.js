@@ -6,7 +6,7 @@ async function randomAcudit() {
   });
   const jsonData = await response.json();
   console.log(jsonData);
-  
+  document.getElementById("acudit").innerHTML = jsonData.joke;
 }
 
 
