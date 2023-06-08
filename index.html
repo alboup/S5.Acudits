@@ -9,13 +9,18 @@
 <body>
     <script src="./index.js"></script>
     <div> 
-        <h1> Preparat per riure?</h1>
-        <p id="acudit"> </p>
-        <button onclick="randomAcudit()"> Següent acudit </button>
     
-    
-    
-    </div>
+            <h1>Preparat per riure?</h1>
+            <p id="acudit"></p>
+            <button onclick="randomAcudit()">Següent acudit</button>
+            <br>
+            <br>
+            <div id="votacio" style="display: none;">
+                <button onclick="votarAcudit(1)">&#128514;</button>
+                <button onclick="votarAcudit(2)">&#128528;</button>
+                <button onclick="votarAcudit(3)">&#128544;</button>
+            </div>
+        </div>
     
 </body>
 </html>
