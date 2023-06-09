@@ -1,16 +1,39 @@
 let reportAcudits = [];
 
+
+let currentJokeSource = 'icanhazdadjoke'; 
+
 async function randomAcudit() {
-  const response = await fetch("https://icanhazdadjoke.com/", {
-    headers: {
-      Accept: "application/json",
-    },
-  });
-  const jsonData = await response.json();
-  console.log(jsonData);
-  document.getElementById("acudit").innerHTML = jsonData.joke;
+  let jsonData;
+  
+  if (currentJokeSource === 'icanhazdadjoke') {
+    // Crida a l'API d'acudits actual
+    const response = await fetch("https://icanhazdadjoke.com/", {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    jsonData = await response.json();
+    
+    // Canvia a la font d'acudits de Chuck Norris
+    currentJokeSource = 'chucknorris';
+  } else {
+    // Crida a l'API d'acudits de Chuck Norris
+    const chuckNorrisResponse = await fetch("https://api.chucknorris.io/jokes/random");
+    jsonData = await chuckNorrisResponse.json();
+    
+    // Canvia a la font d'acudits actual
+    currentJokeSource = 'icanhazdadjoke';
+  }
+  
+  const joke = jsonData.joke || jsonData.value; // Agafa el camp correcte per als acudits de cada font
+  
+  console.log(joke);
+  document.getElementById("acudit").innerHTML = joke;
   document.getElementById("votacio").style.display = "block";
 }
+
+
 
 function votarAcudit(score) {
   const date = new Date().toISOString();
